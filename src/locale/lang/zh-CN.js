@@ -10,7 +10,6 @@ export default {
   icons_page: '自定义图标',
   img_cropper_page: '图片编辑器',
   update: '上传数据',
-  join_page: 'QQ群',
   doc: '文档',
   update_table_page: '上传CSV文件',
   update_paste_page: '粘贴表格数据',
@@ -42,5 +41,7 @@ export default {
   tree_table_page: '树状表格',
   org_tree_page: '组织结构树',
   drag_drawer_page: '可拖动抽屉',
-  tree_select_page: '树状下拉选择器'
+  // ----------------------------
+  yinshi: '隐士',
+  yinshi_page: '隐士门派'
 }

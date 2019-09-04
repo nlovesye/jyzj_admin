@@ -33,7 +33,7 @@ export default [
     redirect: '/home',
     component: Main,
     meta: {
-      hideInMenu: true,
+      // hideInMenu: true,
       notCache: true
     },
     children: [
@@ -41,40 +41,12 @@ export default [
         path: '/home',
         name: 'home',
         meta: {
-          hideInMenu: true,
+          // hideInMenu: true,
           title: '首页',
           notCache: true,
           icon: 'md-home'
         },
         component: () => import('@/view/single-page/home')
-      }
-    ]
-  },
-  {
-    path: '',
-    name: 'doc',
-    meta: {
-      title: '文档',
-      href: 'https://lison16.github.io/iview-admin-doc/#/',
-      icon: 'ios-book'
-    }
-  },
-  {
-    path: '/join',
-    name: 'join',
-    component: Main,
-    meta: {
-      hideInBread: true
-    },
-    children: [
-      {
-        path: 'join_page',
-        name: 'join_page',
-        meta: {
-          icon: '_qq',
-          title: 'QQ群'
-        },
-        component: () => import('@/view/join-page.vue')
       }
     ]
   },
@@ -99,6 +71,27 @@ export default [
     ]
   },
   {
+    path: '/yinshi',
+    name: 'yinshi',
+    meta: {
+      icon: 'logo-buffer',
+      title: '隐士门派',
+      hideInBread: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'yinshi_page',
+        name: 'yinshi_page',
+        meta: {
+          icon: 'logo-buffer',
+          title: '门派列表'
+        },
+        component: () => import('@/view/yinshi/List.vue')
+      }
+    ]
+  },
+  {
     path: '/components',
     name: 'components',
     meta: {
@@ -107,24 +100,6 @@ export default [
     },
     component: Main,
     children: [
-      {
-        path: 'tree_select_page',
-        name: 'tree_select_page',
-        meta: {
-          icon: 'md-arrow-dropdown-circle',
-          title: '树状下拉选择器'
-        },
-        component: () => import('@/view/components/tree-select/index.vue')
-      },
-      {
-        path: 'count_to_page',
-        name: 'count_to_page',
-        meta: {
-          icon: 'md-trending-up',
-          title: '数字渐变'
-        },
-        component: () => import('@/view/components/count-to/count-to.vue')
-      },
       {
         path: 'drag_list_page',
         name: 'drag_list_page',

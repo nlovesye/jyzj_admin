@@ -11,7 +11,6 @@ export default {
   img_cropper_page: 'Image-editor',
   update: 'Update',
   doc: 'Document',
-  join_page: 'QQ Group',
   update_table_page: 'Update .CSV',
   update_paste_page: 'Paste Table Data',
   multilevel: 'multilevel',
@@ -42,5 +41,7 @@ export default {
   tree_table_page: 'Tree Table',
   org_tree_page: 'Org Tree',
   drag_drawer_page: 'Draggable Drawer',
-  tree_select_page: 'Tree Selector'
+  // ------------------------------------
+  yinshi: 'yinshi',
+  yinshi_page: 'yinshi_page'
 }
