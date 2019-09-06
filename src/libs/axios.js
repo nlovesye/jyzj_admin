@@ -1,16 +1,5 @@
 import axios from 'axios'
-import store from '@/store'
-// import { Spin } from 'iview'
-const addErrorLog = errorInfo => {
-  const { statusText, status, request: { responseURL } } = errorInfo
-  let info = {
-    type: 'ajax',
-    code: status,
-    mes: statusText,
-    url: responseURL
-  }
-  if (!responseURL.includes('save_error_logger')) store.dispatch('addErrorLog', info)
-}
+import { Message } from 'iview'
 
 class HttpRequest {
   constructor (baseUrl = baseURL) {
@@ -48,19 +37,16 @@ class HttpRequest {
     instance.interceptors.response.use(res => {
       this.destroy(url)
       const { data, status } = res
-      return { data, status }
+      // console.log('response', res)
+      if (data.success && data.status === 200) {
+        return { data: data.data, status }
+      } else {
+        Message.error(data.message)
+        return Promise.reject(data)
+      }
     }, error => {
       this.destroy(url)
-      let errorInfo = error.response
-      if (!errorInfo) {
-        const { request: { statusText, status }, config } = JSON.parse(JSON.stringify(error))
-        errorInfo = {
-          statusText,
-          status,
-          request: { responseURL: config.url }
-        }
-      }
-      addErrorLog(errorInfo)
+      Message.error(error.message || '服务器错误')
       return Promise.reject(error)
     })
   }

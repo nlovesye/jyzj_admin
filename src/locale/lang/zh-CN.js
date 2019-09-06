@@ -43,5 +43,7 @@ export default {
   drag_drawer_page: '可拖动抽屉',
   // ----------------------------
   yinshi: '隐士',
-  yinshi_page: '隐士门派'
+  yinshi_page: '隐士门派信息',
+  yinshi_demand: '隐士需求规则',
+  data_yinshimenpai: '隐士门派'
 }

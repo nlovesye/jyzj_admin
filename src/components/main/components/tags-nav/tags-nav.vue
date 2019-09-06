@@ -49,6 +49,7 @@
 <script>
 import { showTitle, routeEqual } from '@/libs/util'
 import beforeClose from '@/router/before-close'
+import { mapMutations } from 'vuex'
 export default {
   name: 'TagsNav',
   props: {
@@ -70,7 +71,8 @@ export default {
       visible: false,
       menuList: {
         others: '关闭其他',
-        all: '关闭所有'
+        all: '关闭所有',
+        refresh: '刷新'
       }
     }
   },
@@ -81,6 +83,7 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['moduleRefresh']),
     handlescroll (e) {
       var type = e.type
       let delta = 0
@@ -118,6 +121,10 @@ export default {
         setTimeout(() => {
           this.getTagElementByRoute(this.currentRouteObj)
         }, 100)
+      } else if (type.includes('refresh')) {
+        // const prevRouterKey = this.$store.state.app.routerKey
+        const routerKey = this.$store.state.app.refreshCount++
+        this.moduleRefresh(routerKey)
       }
     },
     handleClose (current) {
@@ -175,6 +182,11 @@ export default {
       if (item.name === this.$config.homeName) {
         return
       }
+      if (this.isCurrentTag(item)) {
+        this.menuList.refresh = '刷新'
+      } else {
+        delete this.menuList.refresh
+      }
       this.visible = true
       const offsetLeft = this.$el.getBoundingClientRect().left
       this.contextMenuLeft = e.clientX - offsetLeft + 10
@@ -186,6 +198,7 @@ export default {
   },
   watch: {
     '$route' (to) {
+      this.moduleRefresh(this.$store.state.app.refreshCount++)
       this.getTagElementByRoute(to)
     },
     visible (value) {

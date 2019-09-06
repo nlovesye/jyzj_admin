@@ -25,7 +25,8 @@
           </div>
           <Content class="content-wrapper">
             <keep-alive :include="cacheList">
-              <router-view/>
+              <router-view />
+              <!-- <router-view :key="$store.state.app.routerKey"/> -->
             </keep-alive>
             <ABackTop :height="100" :bottom="80" :right="50" container=".content-wrapper"></ABackTop>
           </Content>
@@ -43,7 +44,7 @@ import ABackTop from './components/a-back-top'
 import Fullscreen from './components/fullscreen'
 import Language from './components/language'
 import ErrorStore from './components/error-store'
-import { mapMutations, mapActions, mapGetters } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 import { getNewTagList, routeEqual } from '@/libs/util'
 import routers from '@/router/routers'
 import minLogo from '@/assets/images/logo-min.jpg'
@@ -107,10 +108,6 @@ export default {
       'setLocal',
       'setHomeRoute',
       'closeTag'
-    ]),
-    ...mapActions([
-      'handleLogin',
-      'getUnreadMessageCount'
     ]),
     turnToPage (route) {
       let { name, params, query } = {}
@@ -180,8 +177,6 @@ export default {
         name: this.$config.homeName
       })
     }
-    // 获取未读消息条数
-    this.getUnreadMessageCount()
   }
 }
 </script>

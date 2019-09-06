@@ -71,6 +71,27 @@ export default [
     ]
   },
   {
+    path: '/data',
+    name: 'data',
+    meta: {
+      icon: 'logo-buffer',
+      title: '资源数据',
+      hideInBread: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'data_yinshimenpai',
+        name: 'data_yinshimenpai',
+        meta: {
+          icon: 'logo-buffer',
+          title: '隐士门派'
+        },
+        component: () => import('@/view/data/Yinshimenpai.vue')
+      }
+    ]
+  },
+  {
     path: '/yinshi',
     name: 'yinshi',
     meta: {
@@ -80,6 +101,15 @@ export default [
     },
     component: Main,
     children: [
+      {
+        path: 'yinshi_demand',
+        name: 'yinshi_demand',
+        meta: {
+          icon: 'md-grid',
+          title: '门派需求规则'
+        },
+        component: () => import('@/view/yinshi/Demand.vue')
+      },
       {
         path: 'yinshi_page',
         name: 'yinshi_page',
