@@ -35,16 +35,14 @@
         <Button @click="submit" type="primary" :loading="modalLoading">提交</Button>
       </div>
     </Modal>
+    <Button type="primary" @click="add">添加</Button>
     <Table border :columns="columns" :data="data">
-      <div slot="header" style="padding: 0 10px;">
-        <Button type="primary" @click="add">添加</Button>
-      </div>
     </Table>
   </div>
 </template>
 
 <script>
-import DataSelect from '_c/data-select'
+import DataSelect from '_c/data_select'
 import { GET_HERMITS_LIST } from '@api/data'
 export default {
   name: 'yinshi_page',

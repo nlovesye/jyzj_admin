@@ -58,8 +58,25 @@ class Db {
   }
   /* 插入数据 */
 
+  /* 插入多条数据 */
+  insertMany (cName, json) {
+    return new Promise((resolve, reject) => {
+      this.connect().then(db => {
+        db.collection(cName).insertMany(json, (err, rt) => {
+          if (err) {
+            console.log('插入多条数据错误 insertMany>>>>>>>>>', err)
+            reject(err)
+          } else {
+            resolve(rt)
+          }
+        })
+      })
+    })
+  }
+  /* 插入多条数据 */
+
   /* 查询数据 */
-  find (cName, json, projection = {}) {
+  find (cName, json = {}, projection = {}) {
     return new Promise((resolve, reject) => {
       this.connect().then(db => {
         let rt
@@ -131,6 +148,23 @@ class Db {
     })
   }
   /* 删除数据 */
+
+  /* 删除表数据 */
+  removeMany (cName, targetJson) {
+    return new Promise((resolve, reject) => {
+      this.connect().then(db => {
+        db.collection(cName).remove(targetJson, (err, rt) => {
+          if (err) {
+            console.log('删除表数据>>>>>>>>>', err)
+            reject(err)
+          } else {
+            resolve(rt)
+          }
+        })
+      })
+    })
+  }
+  /* 删除表数据 */
 
   /**
    * @description 根据id删除

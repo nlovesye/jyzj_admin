@@ -1,14 +1,18 @@
+const col = 'user'
+
 // 获取用户列表
-const GET_ = async (ctx, next) => {
+const GET_list = async (ctx, next) => {
   // const { ...permission } = ctx.request.body
-  const ret = await ctx.service.user.findAll({})
-  if (ret) {
+  try {
+    const ret = await ctx.mdb.find(col, {})
     ctx.retJson(ret)
-  } else {
-    ctx.retErr('服务器错误!')
+  } catch (error) {
+    ctx.retErr({
+      message: '服务器出错!'
+    })
   }
 }
 
 module.exports = {
-  GET_
+  GET_list
 }

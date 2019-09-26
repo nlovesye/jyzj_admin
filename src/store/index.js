@@ -8,10 +8,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    //
+    viewHeight: 0
   },
   mutations: {
-    //
+    setState (state, obj) {
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          const val = obj[key]
+          state[key] = val
+        }
+      }
+    }
   },
   actions: {
     //

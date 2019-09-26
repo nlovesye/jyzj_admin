@@ -1,3 +1,5 @@
+const colAccess = 'access-ele'
+
 // 用户登录
 const POST_ = async (ctx, next) => {
   let {
@@ -7,11 +9,14 @@ const POST_ = async (ctx, next) => {
   const user = await ctx.service.user.findUser({ userName, password })
   if (user) {
     const userInfo = await ctx.service.user.getUserInfo(userName)
-    // console.log('user', Date.now(), userInfo)
+    const allAccess = await ctx.mdb.find(colAccess)
+    const access = allAccess.filter(item => item.roles.some(r => r === userInfo.role))
+    // console.log('user', Date.now(), userInfo, access)
     ctx.retJson({
       token: Date.now(),
       userName: userInfo.userName,
-      nickName: userInfo.nickName
+      nickName: userInfo.nickName,
+      access
     })
   } else {
     ctx.retErr({

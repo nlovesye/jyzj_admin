@@ -9,7 +9,7 @@
         </div>
       </side-menu>
     </Sider>
-    <Layout>
+    <Layout style="height: 100%">
       <Header class="header-con">
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
           <user :message-unread-count="unreadCount" :user-avatar="userAvatar"/>
@@ -23,7 +23,7 @@
           <div class="tag-nav-wrapper">
             <tags-nav :value="$route" @input="handleClick" :list="tagNavList" @on-close="handleCloseTag"/>
           </div>
-          <Content class="content-wrapper">
+          <Content class="content-wrapper" ref="contentView">
             <keep-alive :include="cacheList">
               <router-view />
               <!-- <router-view :key="$store.state.app.routerKey"/> -->
@@ -44,7 +44,7 @@ import ABackTop from './components/a-back-top'
 import Fullscreen from './components/fullscreen'
 import Language from './components/language'
 import ErrorStore from './components/error-store'
-import { mapMutations, mapGetters } from 'vuex'
+import { mapMutations, mapGetters, mapState } from 'vuex'
 import { getNewTagList, routeEqual } from '@/libs/util'
 import routers from '@/router/routers'
 import minLogo from '@/assets/images/logo-min.jpg'
@@ -71,6 +71,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['viewHeight']),
     ...mapGetters([
       'errorCount'
     ]),
@@ -107,7 +108,8 @@ export default {
       'addTag',
       'setLocal',
       'setHomeRoute',
-      'closeTag'
+      'closeTag',
+      'setState'
     ]),
     turnToPage (route) {
       let { name, params, query } = {}
@@ -177,6 +179,11 @@ export default {
         name: this.$config.homeName
       })
     }
+    setTimeout(() => {
+      const viewHeight = this.$refs.contentView.$el.offsetHeight - 36
+      // console.log('viewHeight', viewHeight, this.$refs.contentView.$el)
+      this.setState({ viewHeight })
+    }, 150)
   }
 }
 </script>

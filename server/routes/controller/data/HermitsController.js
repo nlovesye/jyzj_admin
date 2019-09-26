@@ -22,7 +22,7 @@ const PUT_add = async (ctx, next) => {
         message: '门派已存在!'
       })
     } else {
-      await ctx.mdb.insert('hermits', ctx.request.body)
+      await ctx.mdb.insert('hermits', { name: hermits.name })
       ctx.retJson('操作成功')
     }
   } catch (error) {

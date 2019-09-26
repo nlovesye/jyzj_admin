@@ -20,49 +20,36 @@ export const REGIST = (user) => {
   })
 }
 
-export const getMessage = () => {
+// 获取用户列表
+export const GET_USER = () => {
   return axios.request({
-    url: 'message/init',
+    url: '/user/list',
     method: 'get'
   })
 }
 
-export const getContentByMsgId = msg_id => {
+// 添加元素权限
+export const ADD_ACCESS_ELE = (data) => {
   return axios.request({
-    url: 'message/content',
-    method: 'get',
-    params: {
-      msg_id
-    }
+    url: '/user/access/add',
+    method: 'put',
+    data
   })
 }
 
-export const hasRead = msg_id => {
+// 删除元素权限
+export const DEL_ACCESS_ELE = (data) => {
   return axios.request({
-    url: 'message/has_read',
-    method: 'post',
-    data: {
-      msg_id
-    }
+    url: '/user/access/del',
+    method: 'delete',
+    params: data
   })
 }
 
-export const removeReaded = msg_id => {
+// 获取元素列表
+export const GET_ACCESS_ELE_LIST = () => {
   return axios.request({
-    url: 'message/remove_readed',
-    method: 'post',
-    data: {
-      msg_id
-    }
-  })
-}
-
-export const restoreTrash = msg_id => {
-  return axios.request({
-    url: 'message/restore',
-    method: 'post',
-    data: {
-      msg_id
-    }
+    url: '/user/access/eleList',
+    method: 'get'
   })
 }

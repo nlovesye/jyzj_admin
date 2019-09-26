@@ -40,7 +40,7 @@
     <div class="login-con">
       <Card icon="log-in" title="欢迎登录" :bordered="false">
         <div class="form-con">
-          <login-form @on-success-valid="handleSubmit" :loading="loginLoading"></login-form>
+          <login-form @on-success-valid="handleSubmit"></login-form>
           <a class="to-rigist" @click="toRegist">快速注册</a>
         </div>
       </Card>
@@ -59,7 +59,6 @@ export default {
     return {
       modalVisible: false,
       registLoading: false,
-      loginLoading: false,
       registForm: {
         userName: '',
         password: '',
@@ -84,16 +83,11 @@ export default {
       'regist'
     ]),
     handleSubmit ({ userName, password }) {
-      this.loginLoading = true
       this.handleLogin({ userName, password }).then(res => {
         this.$Message.success('登陆成功!')
-        this.loginLoading = false
         this.$router.push({
           name: this.$config.homeName
         })
-      }).catch(err => {
-        console.log(err)
-        this.loginLoading = false
       })
     },
     // 快速注册
@@ -106,7 +100,10 @@ export default {
       this.registLoading = true
       const isValid = await this.$refs['registForm'].validate()
       if (!isValid) return
-      this.regist(this.registForm).then(res => {
+      this.regist({
+        ...this.registForm,
+        role: 'user'
+      }).then(res => {
         this.$Message.success('注册成功!')
         this.modalVisible = false
         this.registLoading = false

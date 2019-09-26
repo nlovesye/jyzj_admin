@@ -350,6 +350,18 @@ export const localRead = (key) => {
   return localStorage.getItem(key) || ''
 }
 
+export const localSaveJson = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value))
+}
+
+export const localReadJson = (key) => {
+  try {
+    return JSON.parse(localStorage.getItem(key)) || null
+  } catch (error) {
+    return localStorage.getItem(key) || null
+  }
+}
+
 // scrollTop animation
 export const scrollTop = (el, from = 0, to, duration = 500, endCallback) => {
   if (!window.requestAnimationFrame) {
@@ -396,4 +408,16 @@ export const setTitle = (routeItem, vm) => {
   const pageTitle = showTitle(handledRoute, vm)
   const resTitle = pageTitle ? `${title} - ${pageTitle}` : title
   window.document.title = resTitle
+}
+
+export const getMenuModule = (list, rt) => {
+  list.forEach(item => {
+    if (item.children && item.children.length) {
+      rt = getMenuModule(item.children, rt)
+    }
+    if (item.meta && item.meta.module) {
+      rt = rt.concat([item])
+    }
+  })
+  return rt
 }
