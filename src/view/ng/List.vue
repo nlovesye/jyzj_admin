@@ -5,12 +5,12 @@
 <template>
   <div>
     <div class="table_header_box">
-      <UploadButton @onload="onload" />
-      <Button style="margin-left: 5px;" icon="md-close" :loading="deleteLoading" @click="removeAll">删除所有</Button>
+      <UploadButton @onload="onload" v-verify="'ng_upload'" />
+      <Button style="margin-left: 5px;" icon="md-close" :loading="deleteLoading" @click="removeAll" v-verify="'ng_delete_batch'">删除所有</Button>
     </div>
     <Table :columns="tableTitle" border :data="tableData" :loading="tableLoading" :max-height="tableHeight">
       <template slot-scope="{ row, index }" slot="action">
-        <Button type="error" size="small" @click="remove(row)">删除</Button>
+        <Button type="error" size="small" @click="remove(row)" v-verify="'ng_delete'">删除</Button>
       </template>
     </Table>
   </div>

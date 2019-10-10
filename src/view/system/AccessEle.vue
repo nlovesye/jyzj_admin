@@ -34,12 +34,12 @@
         <Button @click="submit" type="primary" :loading="modalLoading">提交</Button>
       </div>
     </Modal>
-    <div class="table_header_box">
+    <div class="table_header_box" v-verify="'system_ele_add'">
       <Button icon="md-add" @click="add">添加</Button>
     </div>
     <Table :columns="tableTitle" border :data="tableData" :loading="tableLoading" :max-height="tableHeight">
       <template slot-scope="{ row, index }" slot="action">
-        <Button type="error" size="small" @click="remove(row)">删除</Button>
+        <Button type="error" size="small" @click="remove(row)" v-verify="'system_ele_delete'">删除</Button>
       </template>
     </Table>
   </div>
