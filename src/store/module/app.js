@@ -24,6 +24,16 @@ const closePage = (state, route) => {
   router.push(nextRoute)
 }
 
+// const setMenuHide = (list, access) => {
+//   return list.map(item => {
+//     if (item.children && item.children.length) {
+//       item.children = setMenuHide(item.children, access)
+//     }
+//     item.hasAccess = access.some(i => i.key === item.name)
+//     return item
+//   })
+// }
+
 export default {
   state: {
     breadCrumbList: [],
@@ -36,7 +46,14 @@ export default {
     refreshCount: localRead('refreshCount')
   },
   getters: {
-    menuList: (state, getters, rootState) => getMenuByRouter(routers, rootState.user.access),
+    menuList: (state, getters, rootState) => {
+      // const { access } = rootState.user
+      // const accessList = access.filter(item => item.type === 'module')
+      // const menuList = getMenuByRouter(routers, rootState.user.access)
+      // const ret = setMenuHide(menuList, accessList)
+      // console.log('menu', accessList, getMenuByRouter(routers, rootState.user.access), ret)
+      return getMenuByRouter(routers, rootState.user.access)
+    },
     errorCount: state => state.errorList.length
   },
   mutations: {

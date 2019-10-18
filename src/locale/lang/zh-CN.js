@@ -9,5 +9,7 @@ export default {
   ng: '内功',
   access_ele: '元素权限',
   user: '用户',
-  system: '系统管理'
+  system: '系统管理',
+  plan_list: '行程计划',
+  access_module: '模块权限'
 }

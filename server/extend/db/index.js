@@ -132,6 +132,25 @@ class Db {
   }
   /* 更新数据 */
 
+  // /* 更新多条数据 */
+  // updateMany (cName, targetJson, newJson) {
+  //   return new Promise((resolve, reject) => {
+  //     this.connect().then(db => {
+  //       db.collection(cName).updateMany(targetJson, {
+  //         $set: newJson
+  //       }, (err, rt) => {
+  //         if (err) {
+  //           console.log(err)
+  //           reject(err)
+  //         } else {
+  //           resolve(rt)
+  //         }
+  //       })
+  //     })
+  //   })
+  // }
+  // /* 更新多条数据 */
+
   /* 删除数据 */
   remove (cName, targetJson) {
     return new Promise((resolve, reject) => {

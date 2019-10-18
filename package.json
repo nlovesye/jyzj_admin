@@ -1,6 +1,6 @@
 {
   "name": "jyzj_admin",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "",
   "private": false,
   "scripts": {
@@ -12,20 +12,20 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "clipboard": "^2.0.0",
-    "codemirror": "^5.38.0",
+    "codemirror": "5.49.0",
     "cropperjs": "^1.2.2",
     "dayjs": "^1.7.7",
     "echarts": "^4.0.4",
     "html2canvas": "^1.0.0-alpha.12",
-    "iview": "^3.2.2",
     "iview-area": "^1.5.17",
     "js-cookie": "^2.2.0",
     "simplemde": "^1.11.2",
     "sortablejs": "^1.7.0",
     "tree-table-vue": "^1.1.0",
     "v-org-tree": "^1.0.6",
+    "view-design": "^4.0.1",
     "vue": "^2.5.10",
     "vue-i18n": "^7.8.0",
     "vue-router": "^3.0.1",

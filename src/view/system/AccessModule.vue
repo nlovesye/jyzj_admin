@@ -5,23 +5,16 @@
   <div>
     <Modal
       v-model="modalVisible"
-      title="添加元素"
+      title="添加模块"
       fullscreen
       :mask-closable="false"
       @on-visible-change="modalVisibleChange"
     >
       <Form ref="form" :model="formValid" :rules="formRules" inline :label-width="100" v-if="modalVisible">
-        <data-select
-          placeholder="选择模块"
-          :dealFn="dealFn"
-          textKey="title"
-          formLabel="所属模块"
-          formProp="module"
-        />
-        <FormItem prop="name" label="元素名称">
+        <FormItem prop="name" label="模块名称">
           <Input style="min-width: 160px;" v-model="formValid.name"></Input>
         </FormItem>
-        <FormItem prop="key" label="元素KEY">
+        <FormItem prop="key" label="模块KEY">
           <Input style="min-width: 160px;" v-model="formValid.key"></Input>
         </FormItem>
         <FormItem prop="roles" label="角色类型">
@@ -51,9 +44,9 @@ import { roles } from '@/assets/data/user'
 import { mapState, mapGetters } from 'vuex'
 import DataSelect from '_c/data_select'
 import { getMenuModule } from '@/libs/util'
-import { ADD_ACCESS_ELE, GET_ACCESS_ELE_LIST, DEL_ACCESS } from '@/api/user'
+import { ADD_ACCESS_MODULE, GET_ACCESS_MODULE_LIST, DEL_ACCESS } from '@/api/user'
 export default {
-  name: 'access_ele',
+  name: 'access_module',
   components: {
     DataSelect
   },
@@ -65,8 +58,6 @@ export default {
       formValid: {
         name: '',
         key: '',
-        module: '',
-        moduleTitle: '',
         roles: []
       },
       formRules: {
@@ -75,9 +66,6 @@ export default {
         ],
         key: [
           { required: true, message: 'key不能为空', trigger: 'change' }
-        ],
-        module: [
-          { required: true, message: '所属模块不能为空', trigger: 'change' }
         ],
         roles: [
           { required: true, message: '角色类型必选', trigger: 'change', type: 'array' }
@@ -92,19 +80,13 @@ export default {
           fixed: 'left'
         },
         {
-          title: '所属模块',
-          key: 'moduleTitle',
-          width: 200,
-          resizable: true
-        },
-        {
-          title: '元素名称',
+          title: '模块名称',
           key: 'name',
           width: 320,
           resizable: true
         },
         {
-          title: '元素KEY',
+          title: '模块KEY',
           key: 'key',
           width: 200,
           resizable: true
@@ -136,16 +118,6 @@ export default {
     }
   },
   methods: {
-    async dealFn (type, d) {
-      if (type === 'getData') {
-        return this.moduleList.map(item => ({
-          ...item,
-          title: item.meta.title
-        }))
-      } else {
-        this.formValid = { ...this.formValid, module: d.name, moduleTitle: d.title }
-      }
-    },
     add () {
       this.modalVisible = true
     },
@@ -154,7 +126,7 @@ export default {
         const isValid = await this.$refs.form.validate()
         if (!isValid) return
         this.modalLoading = true
-        await ADD_ACCESS_ELE(this.formValid)
+        await ADD_ACCESS_MODULE(this.formValid)
         // this.refreshTableData()
         this.modalVisible = false
         this.refreshTableData()
@@ -168,7 +140,7 @@ export default {
     async refreshTableData () {
       try {
         this.tableLoading = true
-        const ret = await GET_ACCESS_ELE_LIST()
+        const ret = await GET_ACCESS_MODULE_LIST()
         this.tableData = ret.data || []
       } catch (error) {
         console.log(error)

@@ -163,6 +163,15 @@ export default [
         component: () => import('@/view/system/User.vue')
       },
       {
+        path: 'access_module',
+        name: 'access_module',
+        meta: {
+          icon: 'logo-buffer',
+          title: '模块权限'
+        },
+        component: () => import('@/view/system/AccessModule.vue')
+      },
+      {
         path: 'access_ele',
         name: 'access_ele',
         meta: {
@@ -170,6 +179,28 @@ export default [
           title: '元素权限'
         },
         component: () => import('@/view/system/AccessEle.vue')
+      }
+    ]
+  },
+  {
+    path: '/travel',
+    name: 'travel',
+    meta: {
+      icon: 'logo-buffer',
+      title: '旅游',
+      hideInBread: true,
+      module: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'plan',
+        name: 'plan_list',
+        meta: {
+          icon: 'logo-buffer',
+          title: '行程计划'
+        },
+        component: () => import('@/view/travel/Plan_List.vue')
       }
     ]
   },

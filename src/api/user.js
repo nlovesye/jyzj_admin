@@ -37,8 +37,8 @@ export const ADD_ACCESS_ELE = (data) => {
   })
 }
 
-// 删除元素权限
-export const DEL_ACCESS_ELE = (data) => {
+// 删除权限
+export const DEL_ACCESS = (data) => {
   return axios.request({
     url: '/user/access/del',
     method: 'delete',
@@ -46,10 +46,27 @@ export const DEL_ACCESS_ELE = (data) => {
   })
 }
 
-// 获取元素列表
+// 获取元素权限列表
 export const GET_ACCESS_ELE_LIST = () => {
   return axios.request({
     url: '/user/access/eleList',
     method: 'get'
+  })
+}
+
+// 获取模块权限列表
+export const GET_ACCESS_MODULE_LIST = () => {
+  return axios.request({
+    url: '/user/access/moduleList',
+    method: 'get'
+  })
+}
+
+// 添加模块权限
+export const ADD_ACCESS_MODULE = (data) => {
+  return axios.request({
+    url: '/user/access/moduleAdd',
+    method: 'put',
+    data
   })
 }
