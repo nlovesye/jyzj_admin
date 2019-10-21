@@ -53,20 +53,3 @@ export const GET_ACCESS_ELE_LIST = () => {
     method: 'get'
   })
 }
-
-// 获取模块权限列表
-export const GET_ACCESS_MODULE_LIST = () => {
-  return axios.request({
-    url: '/user/access/moduleList',
-    method: 'get'
-  })
-}
-
-// 添加模块权限
-export const ADD_ACCESS_MODULE = (data) => {
-  return axios.request({
-    url: '/user/access/moduleAdd',
-    method: 'put',
-    data
-  })
-}

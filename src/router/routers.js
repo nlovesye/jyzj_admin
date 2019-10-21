@@ -71,57 +71,6 @@ export default [
     ]
   },
   {
-    path: '/data',
-    name: 'data',
-    meta: {
-      icon: 'logo-buffer',
-      title: '资源数据',
-      hideInBread: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'data_yinshimenpai',
-        name: 'data_yinshimenpai',
-        meta: {
-          icon: 'logo-buffer',
-          title: '隐士门派'
-        },
-        component: () => import('@/view/data/Yinshimenpai.vue')
-      }
-    ]
-  },
-  {
-    path: '/yinshi',
-    name: 'yinshi',
-    meta: {
-      icon: 'logo-buffer',
-      title: '隐士门派',
-      hideInBread: true
-    },
-    component: Main,
-    children: [
-      {
-        path: 'yinshi_demand',
-        name: 'yinshi_demand',
-        meta: {
-          icon: 'md-grid',
-          title: '门派需求规则'
-        },
-        component: () => import('@/view/yinshi/Demand.vue')
-      },
-      {
-        path: 'yinshi_page',
-        name: 'yinshi_page',
-        meta: {
-          icon: 'logo-buffer',
-          title: '门派列表'
-        },
-        component: () => import('@/view/yinshi/List.vue')
-      }
-    ]
-  },
-  {
     path: '/ng',
     name: 'ng',
     meta: {
@@ -161,15 +110,6 @@ export default [
           title: '用户管理'
         },
         component: () => import('@/view/system/User.vue')
-      },
-      {
-        path: 'access_module',
-        name: 'access_module',
-        meta: {
-          icon: 'logo-buffer',
-          title: '模块权限'
-        },
-        component: () => import('@/view/system/AccessModule.vue')
       },
       {
         path: 'access_ele',

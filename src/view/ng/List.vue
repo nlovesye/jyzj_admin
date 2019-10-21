@@ -96,12 +96,15 @@ export default {
         {
           title: '内功名称',
           key: 'ngName',
-          minWidth: 100
+          ellipsis: true,
+          minWidth: 100,
+          resizable: true
         },
         {
           title: '所属门派(类型)',
           ellipsis: true,
           minWidth: 140,
+          resizable: true,
           render: (h, { row, data }) => {
             const type = types.find(item => item.key === row.sectType) || {}
             return h('span', `${row.sect}(${type.name})`)
@@ -110,78 +113,93 @@ export default {
         {
           title: '最高等级',
           key: 'maxLevel',
-          minWidth: 80
+          resizable: true,
+          minWidth: 100
         },
         {
           title: '内功属性',
           key: 'ngAttr',
-          minWidth: 80
+          resizable: true,
+          minWidth: 100
         },
         {
           title: '属性和',
           key: 'attrSum',
-          minWidth: 70
+          minWidth: 90,
+          resizable: true
         },
         {
           title: '臂力',
           key: 'attrBL',
-          minWidth: 60
+          minWidth: 80,
+          resizable: true
         },
         {
           title: '身法',
           key: 'attrSF',
-          minWidth: 60
+          minWidth: 80,
+          resizable: true
         },
         {
           title: '内息',
           key: 'attrNX',
-          minWidth: 60
+          minWidth: 80,
+          resizable: true
         },
         {
           title: '罡气',
           key: 'attrGQ',
-          minWidth: 60
+          minWidth: 80,
+          resizable: true
         },
         {
           title: '体魄',
           key: 'attrTP',
-          minWidth: 60
+          minWidth: 80,
+          resizable: true
         },
         {
           title: '气血上限',
           key: 'hp',
-          minWidth: 80
+          minWidth: 100,
+          resizable: true
         },
         {
           title: '内力上限',
           key: 'mp',
-          minWidth: 80
+          minWidth: 100,
+          resizable: true
         },
         {
           title: '招架上限',
           key: 'sp',
-          minWidth: 80
+          minWidth: 100,
+          resizable: true
         },
         {
           title: '内功防御',
           key: 'nd',
-          minWidth: 80
+          minWidth: 100,
+          resizable: true
         },
         {
           title: '怒气上限',
           key: 'ap',
-          minWidth: 80
+          minWidth: 100,
+          resizable: true
         },
         {
           title: '内功特效',
           key: 'ngPower',
           ellipsis: true,
-          minWidth: 120
+          minWidth: 120,
+          resizable: true
         },
         {
           title: '消耗修为',
           key: 'needConsume',
-          minWidth: 80
+          minWidth: 100,
+          resizable: true
         },
         {
           slot: 'action',
